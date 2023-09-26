@@ -1,6 +1,10 @@
 # commonscript
 Javascript library of common js functions for front-end
 
+# Usage
+This library is most useful when used in inline event hadlers like onclick.\
+See [sample usage]
+
 ## Select an element
 selector - css selector
 ```javascript
@@ -100,5 +104,68 @@ text - text to copy to clipboard
 ```javascript
 copyToClipboard(text)
 ```
+
+## Sample Usage
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommonScript Example</title>
+</head>
+<body>
+    <input type="text" id="myInput" value="Hello, world!">
+    <button onclick="clear('#myInput')">Clear Input</button>
+
+    <p id="myParagraph">This is some text.</p>
+    <button onclick="setHtml('#myParagraph', 'New content')">Change Text</button>
+
+    <div id="myDiv" class="my-class">This is a div.</div>
+    <button onclick="removeClass('#myDiv', 'my-class')">Remove Class</button>
+
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>Jane</td>
+                <td>25</td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="text" id="tableSearch" placeholder="Search by name">
+    <button onclick="filterTable('#tableSearch', '#myTable')">Filter Table</button>
+
+    <select id="mySelect">
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+        <option value="cherry">Cherry</option>
+    </select>
+    <input type="text" id="dropdownSearch" placeholder="Search in dropdown">
+    <button onclick="filterDropdown('#dropdownSearch', '#mySelect')">Filter Dropdown</button>
+
+    <input type="password" id="passwordField" value="mypassword">
+    <button onclick="showPassword('#passwordField')">Show Password</button>
+
+    <input type="text" id="originInput" value="Copy me!">
+    <input type="text" id="destinationInput" placeholder="Paste here">
+    <button onclick="passText('#originInput', '#destinationInput')">Copy Text</button>
+
+    <button onclick="copyToClipboard('Text to copy')">Copy to Clipboard</button>
+
+    <script src="commonscript.js"></script>
+</body>
+</html>
+```
+[sample usage]: https://github.com/vgalvoso/commonscript#sample-usage
 
 
