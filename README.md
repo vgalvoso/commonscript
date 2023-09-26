@@ -3,7 +3,6 @@ Javascript library of common js functions for front-end
 
 # Usage
 This library is most useful when used in inline event hadlers like onclick.\
-See [sample usage]
 
 ## Select an element
 selector - css selector
@@ -35,12 +34,6 @@ setHtml(selector,html)
 selector - css selector
 ```javascript
 getHtml(selector)
-```
-
-## Clear a value or innerHTML of an element
-selector - css selector
-```javascript
-clear(selector)
 ```
 
 ## Add class name to an element
@@ -79,13 +72,6 @@ tableId - id of the table(body) to filter
 filterTable(inputId,tableId)
 ```
 
-## Filter a searchable dropdown
-inputId - id of the search text input\
-divId - id of the div of dropdown options to filter
-```javascript
-filterTable(inputId,divId)
-```
-
 ## Unmask a password field
 sel - css selector
 ```javascript
@@ -112,57 +98,65 @@ copyToClipboard(text)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CommonScript Example</title>
+    <title>CommonScript Inline Event Handler Sample</title>
+    
+    <!-- Include the commonscript.min.js library -->
+    <script src="https://cdn.jsdelivr.net/gh/vgalvoso/commonscript@v1/commonscript.min.js"></script>
 </head>
 <body>
-    <input type="text" id="myInput" value="Hello, world!">
-    <button onclick="clear('#myInput')">Clear Input</button>
+    <h1>CommonScript Inline Event Handler Sample</h1>
 
-    <p id="myParagraph">This is some text.</p>
-    <button onclick="setHtml('#myParagraph', 'New content')">Change Text</button>
-
-    <div id="myDiv" class="my-class">This is a div.</div>
-    <button onclick="removeClass('#myDiv', 'my-class')">Remove Class</button>
-
-    <table id="myTable">
+    <!-- Sample HTML elements to interact with -->
+    <input type="text" id="myInput" placeholder="Enter text">
+    <div class="myDiv"></div>
+    <button id="myButton" class="highlight">Click Me</button>
+    <p id="outputParagraph"></p>
+    
+    <!-- Inline event handlers utilizing commonscript functions -->
+    <button onclick="setVal('#myInput', 'Hello, CommonScript!')">Set Input Value</button>
+    <button onclick="alert(getVal('#myInput'))">Get Input Value</button>
+    <button onclick="setHtml('.myDiv', '<p>This is a sample paragraph.</p>')">Set Div Inner HTML</button>
+    <button onclick="alert(getHtml('.myDiv'))">Get Div Inner HTML</button>
+    <button onclick="addClass('#myButton', 'new-class')">Add Class to Button</button>
+    <button onclick="removeClass('#myButton', 'highlight')">Remove Class from Button</button>
+    <button onclick="setVal('#myInput','')">Clear</button>
+    <br>
+    <!-- Input field for filtering -->
+    <input type="text" id="searchInput" onkeyup="filterTable('#searchInput','#dataTableBody')" placeholder="Search...">
+    
+    <!-- Sample table to filter -->
+    <table id="dataTable">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Age</th>
+                <th>Country</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="dataTableBody">
             <tr>
-                <td>John</td>
+                <td>John Doe</td>
                 <td>30</td>
+                <td>USA</td>
             </tr>
             <tr>
-                <td>Jane</td>
+                <td>Jane Smith</td>
                 <td>25</td>
+                <td>Canada</td>
+            </tr>
+            <tr>
+                <td>Alice Johnson</td>
+                <td>28</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>Bob Brown</td>
+                <td>35</td>
+                <td>Australia</td>
             </tr>
         </tbody>
     </table>
-    <input type="text" id="tableSearch" placeholder="Search by name">
-    <button onclick="filterTable('#tableSearch', '#myTable')">Filter Table</button>
 
-    <select id="mySelect">
-        <option value="apple">Apple</option>
-        <option value="banana">Banana</option>
-        <option value="cherry">Cherry</option>
-    </select>
-    <input type="text" id="dropdownSearch" placeholder="Search in dropdown">
-    <button onclick="filterDropdown('#dropdownSearch', '#mySelect')">Filter Dropdown</button>
-
-    <input type="password" id="passwordField" value="mypassword">
-    <button onclick="showPassword('#passwordField')">Show Password</button>
-
-    <input type="text" id="originInput" value="Copy me!">
-    <input type="text" id="destinationInput" placeholder="Paste here">
-    <button onclick="passText('#originInput', '#destinationInput')">Copy Text</button>
-
-    <button onclick="copyToClipboard('Text to copy')">Copy to Clipboard</button>
-
-    <script src="commonscript.js"></script>
 </body>
 </html>
 ```
